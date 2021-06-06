@@ -1,0 +1,8 @@
+ - Congratulations! Your certificate and chain have been saved at:
+   /etc/letsencrypt/live/swimcalc.u1.se/fullchain.pem
+   Your key file has been saved at:
+   /etc/letsencrypt/live/swimcalc.u1.se/privkey.pem
+   Your cert will expire on 2021-09-04. To obtain a new or tweaked
+   version of this certificate in the future, simply run certbot again
+   with the "certonly" option. To non-interactively renew *all* of
+   your certificates, run "certbot renew"
