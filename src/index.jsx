@@ -3,100 +3,12 @@ import ReactDOM from "react-dom";
 import "./scss/main.scss";
 
 const MainComponent = () => {
-
-    const [sec, setSec] = useState(0)
-    const [min, setMin] = useState(0)
-    const [inputDistance, setInputDistance] = useState(null)
-    const [baseTimeMin, setBaseTimeMin] = useState(0)
-    const [baseTimeSec, setBaseTimeSec] = useState(0)
+    const [baseTimeMin, setBaseTimeMin] = useState(null)
+    const [baseTimeSec, setBaseTimeSec] = useState(null)
 
     React.useEffect(() => {
-        console.log("sec: ", sec, "min: ", min, "inputDistance: ", inputDistance)
-        switch (inputDistance) {
-            case 0:
-                //50
-                setBaseTimeMin(min)
-                setBaseTimeSec(sec)
-                break;
-            case 1:
-                //100
-                setBaseTimeMin(min / 2)
-                setBaseTimeSec(sec / 2)
-                break;
-            case 2:
-                //200
-                setBaseTimeMin(min / 4)
-                setBaseTimeSec(sec / 4)
-                break;
-            case 3:
-                //300
-                setBaseTimeMin(min / 6)
-                setBaseTimeSec(sec / 6)
-                break;
-            case 4:
-                //400
-                setBaseTimeMin(min / 8)
-                setBaseTimeSec(sec / 8)
-                break;
-            case 5:
-                //500
-                setBaseTimeMin(min / 10)
-                setBaseTimeSec(sec / 10)
-                break;
-            case 6:
-                //600
-                setBaseTimeMin(min / 12)
-                setBaseTimeSec(sec / 12)
-                break;
-            case 7:
-                //700
-                setBaseTimeMin(min / 14)
-                setBaseTimeSec(sec / 14)
-                break;
-            case 8:
-                //800
-                setBaseTimeMin(min / 16)
-                setBaseTimeSec(sec / 16)
-                break;
-            case 10:
-                //900
-                setBaseTimeMin(min / 18)
-                setBaseTimeSec(sec / 18)
-                break;
-            case 11:
-                //1000
-                setBaseTimeMin(min / 20)
-                setBaseTimeSec(sec / 20)
-                break;
-            case 12:
-                //1100
-                setBaseTimeMin(min / 22)
-                setBaseTimeSec(sec / 22)
-                break;
-            case 13:
-                //1200
-                setBaseTimeMin(min / 24)
-                setBaseTimeSec(sec / 24)
-                break;
-            case 14:
-                //1300
-                setBaseTimeMin(min / 26)
-                setBaseTimeSec(sec / 26)
-                break;
-            case 15:
-                //1400
-                setBaseTimeMin(min / 28)
-                setBaseTimeSec(sec / 28)
-                break;
-            case 16:
-                //1500
-                setBaseTimeMin(min / 30)
-                setBaseTimeSec(sec / 30)
-                break;
-            default:
-                break;
-        }
-        console.log("baseTimeMin: ", baseTimeMin, "baseTimeSec: ", baseTimeSec)
+        console.log("baseMin: ", baseTimeMin)
+        console.log("baseSec: ", baseTimeSec)
     })
 
 
@@ -171,29 +83,330 @@ const MainComponent = () => {
     }
 
     const calculator = (e) => {
-        console.log(e)
+        if (e.target.value.toString().indexOf(".") > -1) {
+            console.log("not a number")
+            setBaseTimeMin(null)
+            setBaseTimeSec(null)
+            return
+        }
+        if (e.target.value.toString().charAt(0) === "0") {
+            e.target.value = e.target.value.toString().replace("0", "")
+        }
+        if (baseTimeMin === null && baseTimeSec === null) {
+            setBaseTimeMin(0)
+            setBaseTimeSec(0)
+        }
         if (e.target.name === "min") {
             console.log("minutes: ", e.target.value)
-            setMin(e.target.value)
-            setInputDistance(e.target.id)
-        } else if (e.target.name === "sec") {
+        }
+        if (e.target.name === "sec") {
             console.log("seconds: ", e.target.value)
-            setSec(e.target.value)
-            setInputDistance(e.target.id)
+        }
+
+        console.log(e.target.id)
+        switch (e.target.id) {
+            case "0":
+                //50
+                if (e.target.name === "min") {
+                    setBaseTimeMin(e.target.value)
+                } else if (e.target.name === "sec") {
+                    setBaseTimeSec(e.target.value)
+                }
+
+                break;
+            case "1":
+                //100
+                if (e.target.name === "min") {
+                    setBaseTimeMin(e.target.value / 2)
+                } else if (e.target.name === "sec") {
+                    setBaseTimeSec(e.target.value / 2)
+                }
+
+                break;
+            case "2":
+                //200
+                if (e.target.name === "min") {
+                    setBaseTimeMin(e.target.value / 4)
+                } else if (e.target.name === "sec") {
+                    setBaseTimeSec(e.target.value / 4)
+                }
+
+                break;
+            case "3":
+                //300
+                if (e.target.name === "min") {
+                    setBaseTimeMin(e.target.value / 6)
+                } else if (e.target.name === "sec") {
+                    setBaseTimeSec(e.target.value / 6)
+                }
+
+                break;
+            case "4":
+                //400
+                if (e.target.name === "min") {
+                    setBaseTimeMin(e.target.value / 8)
+                } else if (e.target.name === "sec") {
+                    setBaseTimeSec(e.target.value / 8)
+                }
+
+                break;
+            case "5":
+                //500
+                if (e.target.name === "min") {
+                    setBaseTimeMin(e.target.value / 10)
+                } else if (e.target.name === "sec") {
+                    setBaseTimeSec(e.target.value / 10)
+                }
+
+                break;
+            case "6":
+                //600
+                if (e.target.name === "min") {
+                    setBaseTimeMin(e.target.value / 12)
+                } else if (e.target.name === "sec") {
+                    setBaseTimeSec(e.target.value / 12)
+                }
+
+                break;
+            case "7":
+                //700
+                if (e.target.name === "min") {
+                    setBaseTimeMin(e.target.value / 14)
+                } else if (e.target.name === "sec") {
+                    setBaseTimeSec(e.target.value / 14)
+                }
+
+                break;
+            case "8":
+                //800
+                if (e.target.name === "min") {
+                    setBaseTimeMin(e.target.value / 16)
+                } else if (e.target.name === "sec") {
+                    setBaseTimeSec(e.target.value / 16)
+                }
+
+                break;
+            case "10":
+                //900
+                if (e.target.name === "min") {
+                    setBaseTimeMin(e.target.value / 18)
+                } else if (e.target.name === "sec") {
+                    setBaseTimeSec(e.target.value / 18)
+                }
+
+                break;
+            case "11":
+                //1000
+                if (e.target.name === "min") {
+                    setBaseTimeMin(e.target.value / 20)
+                } else if (e.target.name === "sec") {
+                    setBaseTimeSec(e.target.value / 20)
+                }
+
+                break;
+            case "12":
+                //1100
+                if (e.target.name === "min") {
+                    setBaseTimeMin(e.target.value / 22)
+                } else if (e.target.name === "sec") {
+                    setBaseTimeSec(e.target.value / 22)
+                }
+
+                break;
+            case "13":
+                //1200
+                if (e.target.name === "min") {
+                    setBaseTimeMin(e.target.value / 24)
+                } else if (e.target.name === "sec") {
+                    setBaseTimeSec(e.target.value / 24)
+                }
+
+                break;
+            case "14":
+                //1300
+                if (e.target.name === "min") {
+                    setBaseTimeMin(e.target.value / 26)
+                } else if (e.target.name === "sec") {
+                    setBaseTimeSec(e.target.value / 26)
+                }
+
+                break;
+            case "15":
+                //1400
+                if (e.target.name === "min") {
+                    setBaseTimeMin(e.target.value / 28)
+                } else if (e.target.name === "sec") {
+                    setBaseTimeSec(e.target.value / 28)
+                }
+
+                break;
+            case "16":
+                //1500
+                if (e.target.name === "min") {
+                    setBaseTimeMin(e.target.value / 30)
+                } else if (e.target.name === "sec") {
+                    setBaseTimeSec(e.target.value / 30)
+                }
+
+                break;
+            default:
+                console.log("err with calculator function switch")
+                break;
         }
     }
 
     const time = () => {
         const returnArray = []
-        for (let i = 0; i < 18; i++) {
+        for (let i = 0; i < 16; i++) {
+            let min
+            let sec
+            if (baseTimeMin !== null && baseTimeSec !== null) {
+                switch (i) {
+                    case 0:
+                        //50
+                        min = baseTimeMin
+                        sec = baseTimeSec
+                        break;
+                    case 1:
+                        //100
+                        min = baseTimeMin * 2
+                        sec = baseTimeSec * 2
+                        break;
+                    case 2:
+                        //200
+                        min = baseTimeMin * 4
+                        sec = baseTimeSec * 4
+                        break;
+                    case 3:
+                        //300
+                        min = baseTimeMin * 6
+                        sec = baseTimeSec * 6
+                        break;
+                    case 4:
+                        //400
+                        min = baseTimeMin * 8
+                        sec = baseTimeSec * 8
+                        break;
+                    case 5:
+                        //500
+                        min = baseTimeMin * 10
+                        sec = baseTimeSec * 10
+                        break;
+                    case 6:
+                        //600
+                        min = baseTimeMin * 12
+                        sec = baseTimeSec * 12
+                        break;
+                    case 7:
+                        //700
+                        min = baseTimeMin * 14
+                        sec = baseTimeSec * 14
+                        break;
+                    case 8:
+                        //800
+                        min = baseTimeMin * 16
+                        sec = baseTimeSec * 16
+                        break;
+                    case 9:
+                        //900
+                        min = baseTimeMin * 18
+                        sec = baseTimeSec * 18
+                        break;
+                    case 10:
+                        //1000
+                        min = baseTimeMin * 20
+                        sec = baseTimeSec * 20
+                        break;
+                    case 11:
+                        //1100
+                        min = baseTimeMin * 22
+                        sec = baseTimeSec * 22
+                        break;
+                    case 12:
+                        //1200
+                        min = baseTimeMin * 24
+                        sec = baseTimeSec * 24
+                        break;
+                    case 13:
+                        //1300
+                        min = baseTimeMin * 26
+                        sec = baseTimeSec * 26
+                        break;
+                    case 14:
+                        //1400
+                        min = baseTimeMin * 28
+                        sec = baseTimeSec * 28
+                        break;
+                    case 15:
+                        //1500
+                        min = baseTimeMin * 30
+                        sec = baseTimeSec * 30
+                        break;
+                    default:
+                        console.log("error with switch statement in function time()")
+                        break;
+                }
+                let done = false
+                let loopCount = 0
+                while (!done) {
+                    console.log("baseTimeMin: ", baseTimeMin, "baseTimeSec: ", baseTimeSec)
+                    if (sec >= 60) {
+                        console.log("turn sec to min")
+                        let addedMin = sec / 60
+                        let rounded = Math.round((addedMin + Number.EPSILON) * 100) / 100;
+                        let parts = rounded.toString().split('.');
+                        console.log("turn sec to min MIN: ", parts[0])
+                        min = min + parseInt(parts[0])
+                        console.log("turn sec to min SEC: ", parts[1])
+                        if (parts[1] === undefined) {
+                            sec = 0
+                        } else {
+                            if (parts[1].toString().length === 2) {
+                                sec = parts[1] * 0.6
+                            } else {
+                                sec = parts[1] * 6
+                            }
+                        }
+                        console.log("sec: ", sec)
+                    }
+                    if (min.toString().indexOf(".") > -1) {
+                        console.log("string with decimal")
+                        let rounded = Math.round((min + Number.EPSILON) * 100) / 100;
+                        let parts = rounded.toString().split(".")
+                        console.log("string with decimal MIN: ", parts[0])
+                        min = parts[0]
+                        console.log("string with decimal SEC: ", parts[1])
+                        if (parts[1].toString().length === 2) {
+                            sec = parts[1] * 0.6 + sec
+                        } else {
+                            sec = parts[1] * 6 + sec
+                        }
+                    }
+                    if (sec.toString().indexOf(".") > -1) {
+                        let rounded = Math.round((sec + Number.EPSILON) * 100) / 100;
+                        console.log("rounded: ", rounded)
+                        sec = rounded
+                    }
+                    if (sec >= 60 && min.toString().indexOf(".") > -1 && sec.toString().indexOf(".") > -1) {
+                        done = true
+                    } else {
+                        loopCount++
+                        if (loopCount > 10) {
+                            done = true
+                            console.log("loop failed", loopCount)
+                        }
+                    }
+                }
+            }
+
             returnArray.push(
                 <div key={`key${i}`} style={{
                     gridColumn: "2 / 3",
                     gridRow: `${i + 2} / ${i + 3}`
                 }} className="colorDiv timeInputDiv">
-                    <input onInput={calculator} id={i} name="min" type="number" placeholder="min" />
+                    <input value={baseTimeMin !== null ? min : ""} onInput={calculator} id={i} name="min" type="number" placeholder="min" />
                     <span>/</span>
-                    <input onInput={calculator} id={i} name="sec" type="number" placeholder="sec" />
+                    <input value={baseTimeSec !== null ? sec : ""} onInput={calculator} id={i} name="sec" type="number" placeholder="sec" />
                 </div>
             )
         }

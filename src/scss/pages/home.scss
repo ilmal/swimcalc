@@ -3,74 +3,151 @@
     margin: 0;
     color: coral;
 }
-.mainBody{
-    width: 100%;
-    height: 2000px;
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 15% 75% 10%;
-    .titleContainer{
-        grid-column: 1/2;
-        grid-row: 1/2;
+
+@media only screen and (max-width: 600px) {
+    .mainBody{
         width: 100%;
-        height: 100%;
-        background-color: #0099ff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        span{
-            font-size: 2.5rem;
-        }
-    }
-    .waves{
-        grid-row: 1/2;
-        grid-column: 1/2;
-        justify-self: end;
-        align-self: end;
-    }
-    .tabellMain{
-        grid-column: 1/2;
-        grid-row: 2/3;
-        width: 100%;
-        height: 100%;
+        height: 2000px;
         display: grid;
-        grid-template-columns: 10% 80% 10%;
-        grid-template-rows: 100%;
-     
-        .container{
-            grid-column: 2/3;
+        grid-template-columns: 100%;
+        grid-template-rows: 15% 75% 10%;
+        .titleContainer{
+            grid-column: 1/2;
             grid-row: 1/2;
-            background-color: lightblue;
+            width: 100%;
+            height: 100%;
+            background-color: #0099ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            span{
+                font-size: 2.5rem;
+            }
+        }
+        .waves{
+            grid-row: 1/2;
+            grid-column: 1/2;
+            justify-self: end;
+            align-self: end;
+        }
+        .tabellMain{
+            grid-column: 1/2;
+            grid-row: 2/3;
+            width: 100%;
+            height: 100%;
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(17, 1fr);
-            grid-column-gap: 1px;
-            grid-row-gap: 1px;
-            .colorDiv {
-                width: 100%;
-                height: 100%;
-                background-color: white;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            .timeInputDiv{
-                input {
-                    width: 100%;
-                    height: 100%;
-                    border: none;
-                    outline: none;
-                    text-align: center;
-                }
-            }
-            .distanceTitle{
-                grid-column: 1/2;
-                grid-row: 1/2;
-            }
-            .TimeTitle{
+            grid-template-columns: 10% 80% 10%;
+            grid-template-rows: 100%;
+         
+            .container{
                 grid-column: 2/3;
                 grid-row: 1/2;
+                background-color: lightblue;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(17, 1fr);
+                grid-column-gap: 1px;
+                grid-row-gap: 1px;
+                .colorDiv {
+                    width: 100%;
+                    height: 100%;
+                    background-color: white;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .timeInputDiv{
+                    input {
+                        width: 100%;
+                        height: 100%;
+                        border: none;
+                        outline: none;
+                        text-align: center;
+                    }
+                }
+                .distanceTitle{
+                    grid-column: 1/2;
+                    grid-row: 1/2;
+                }
+                .TimeTitle{
+                    grid-column: 2/3;
+                    grid-row: 1/2;
+                }
             }
         }
-    }
+    }    
+}
+@media only screen and (min-width: 600px) {
+    .mainBody{
+        width: 100%;
+        height: 3000px;
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 25% 65% 10%;
+        .titleContainer{
+            grid-column: 1/2;
+            grid-row: 1/2;
+            width: 100%;
+            height: 100%;
+            background-color: #0099ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            span{
+                font-size: 2.5rem;
+                margin-bottom: 300px;
+            }
+        }
+        .waves{
+            grid-row: 1/2;
+            grid-column: 1/2;
+            justify-self: end;
+            align-self: end;
+        }
+        .tabellMain{
+            grid-column: 1/2;
+            grid-row: 2/3;
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: 10% 80% 10%;
+            grid-template-rows: 100%;
+        
+            .container{
+                grid-column: 2/3;
+                grid-row: 1/2;
+                background-color: lightblue;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(17, 1fr);
+                grid-column-gap: 1px;
+                grid-row-gap: 1px;
+                .colorDiv {
+                    width: 100%;
+                    height: 100%;
+                    background-color: white;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .timeInputDiv{
+                    input {
+                        width: 100%;
+                        height: 100%;
+                        border: none;
+                        outline: none;
+                        text-align: center;
+                    }
+                }
+                .distanceTitle{
+                    grid-column: 1/2;
+                    grid-row: 1/2;
+                }
+                .TimeTitle{
+                    grid-column: 2/3;
+                    grid-row: 1/2;
+                }
+            }
+        }
+    }    
 }
