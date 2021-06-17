@@ -15,6 +15,7 @@ RUN apk add --no-cache --virtual .gyp \
     make \
     g++ \
     && npm install \
+    && npm install react-scripts@3.4.1 -g \
     && apk del .gyp
 
 # add app
