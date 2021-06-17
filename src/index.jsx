@@ -186,7 +186,7 @@ const MainComponent = () => {
                 }
 
                 break;
-            case "10":
+            case "9":
                 //900
                 if (e.target.name === "min") {
                     setBaseTimeMin(e.target.value / 18)
@@ -195,7 +195,7 @@ const MainComponent = () => {
                 }
 
                 break;
-            case "11":
+            case "10":
                 //1000
                 if (e.target.name === "min") {
                     setBaseTimeMin(e.target.value / 20)
@@ -204,7 +204,7 @@ const MainComponent = () => {
                 }
 
                 break;
-            case "12":
+            case "11":
                 //1100
                 if (e.target.name === "min") {
                     setBaseTimeMin(e.target.value / 22)
@@ -213,7 +213,7 @@ const MainComponent = () => {
                 }
 
                 break;
-            case "13":
+            case "12":
                 //1200
                 if (e.target.name === "min") {
                     setBaseTimeMin(e.target.value / 24)
@@ -222,7 +222,7 @@ const MainComponent = () => {
                 }
 
                 break;
-            case "14":
+            case "13":
                 //1300
                 if (e.target.name === "min") {
                     setBaseTimeMin(e.target.value / 26)
@@ -231,7 +231,7 @@ const MainComponent = () => {
                 }
 
                 break;
-            case "15":
+            case "14":
                 //1400
                 if (e.target.name === "min") {
                     setBaseTimeMin(e.target.value / 28)
@@ -240,7 +240,7 @@ const MainComponent = () => {
                 }
 
                 break;
-            case "16":
+            case "15":
                 //1500
                 if (e.target.name === "min") {
                     setBaseTimeMin(e.target.value / 30)
