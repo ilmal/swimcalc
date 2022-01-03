@@ -1,0 +1,46 @@
+.tabellMain{
+    grid-column: 1/2;
+    grid-row: 2/3;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+    grid-template-rows: 100%;
+    background-color: white;
+    .container{
+        grid-column: 2/3;
+        grid-row: 1/2;
+        background-color: lightblue;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(17, 1fr);
+        grid-column-gap: 1px;
+        grid-row-gap: 1px;
+        .colorDiv {
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .timeInputDiv{
+            input {
+                width: 100%;
+                height: 100%;
+                border: none;
+                outline: none;
+                text-align: center;
+            }
+        }
+        .distanceTitle{
+            grid-column: 1/2;
+            grid-row: 1/2;
+        }
+        .TimeTitle{
+            grid-column: 2/3;
+            grid-row: 1/2;
+        }
+    }
+}
+
