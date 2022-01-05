@@ -1,0 +1,141 @@
+Tjo!
+
+json format ser ut såhär, med "key/ value" par: 
+
+du kan också sätta object (allstå "{ }") som en value, som exempelvis på key3 
+
+{
+    "key": "value",
+    "key2": "value2",
+    "key3": {
+        "key4": "value4",
+        "key5": "value5",
+        "key6": "value6"
+    }
+}
+
+så för att sätta in sim tider, följ denna mall
+
+Så på första nivån är det damer och herrar, sedan på andra nivån bestäms ifall det är i 25a eller 50a, i tredje nivån bestäms simsätt, och i fjärde nivån bestäms distans och tid
+
+Ifall du fyller ut en sånhär mall borde det motsvara en tävling, så basically en sånhär per tävlings kvaltider (SM, JSM, SUMSIM, OS, osv)
+
+Gör de tävlingar du vill ha med
+
+Ett tips är att skaffa en editor, typ VS-code, och sedan skapa en fil som slutar på .json
+Då kommer du se ifall du gör rätt, vilket underlättar. 
+
+sedan kan du bara skicka json filerna till mug så kan jag anvädna dem
+
+lycka till :))
+
+{
+    "damer": {
+        "25": {
+            "fj": {
+                "50": "00:30:00",
+                "100": "01:01:11",
+                "200": "02:00:57"
+            },
+            "ry": {
+                "50": "00:30:00",
+                "100": "01:01:11",
+                "200": "02:00:57"
+            },
+            "br": {
+                "50": "00:30:00",
+                "100": "01:01:11",
+                "200": "02:00:57"
+            },
+            "fr": {
+                "50": "00:30:00",
+                "100": "01:01:11",
+                "200": "02:00:57"
+            },
+            "im": {
+                "100": "01:01:11",
+                "200": "02:00:57"
+            }
+        },
+        "50": {
+            "fj": {
+                "50": "00:30:00",
+                "100": "01:01:11",
+                "200": "02:00:57"
+            },
+            "ry": {
+                "50": "00:30:00",
+                "100": "01:01:11",
+                "200": "02:00:57"
+            },
+            "br": {
+                "50": "00:30:00",
+                "100": "01:01:11",
+                "200": "02:00:57"
+            },
+            "fr": {
+                "50": "00:30:00",
+                "100": "01:01:11",
+                "200": "02:00:57"
+            },
+            "im": {
+                "100": "01:01:11",
+                "200": "02:00:57"
+            }
+        }
+    },
+    "herrar": {
+        "25": {
+            "fj": {
+                "50": "00:30:00",
+                "100": "01:01:11",
+                "200": "02:00:57"
+            },
+            "ry": {
+                "50": "00:30:00",
+                "100": "01:01:11",
+                "200": "02:00:57"
+            },
+            "br": {
+                "50": "00:30:00",
+                "100": "01:01:11",
+                "200": "02:00:57"
+            },
+            "fr": {
+                "50": "00:30:00",
+                "100": "01:01:11",
+                "200": "02:00:57"
+            },
+            "im": {
+                "100": "01:01:11",
+                "200": "02:00:57"
+            }
+        },
+        "50": {
+            "fj": {
+                "50": "00:30:00",
+                "100": "01:01:11",
+                "200": "02:00:57"
+            },
+            "ry": {
+                "50": "00:30:00",
+                "100": "01:01:11",
+                "200": "02:00:57"
+            },
+            "br": {
+                "50": "00:30:00",
+                "100": "01:01:11",
+                "200": "02:00:57"
+            },
+            "fr": {
+                "50": "00:30:00",
+                "100": "01:01:11",
+                "200": "02:00:57"
+            },
+            "im": {
+                "100": "01:01:11",
+                "200": "02:00:57"
+            }
+        }
+    }
+}

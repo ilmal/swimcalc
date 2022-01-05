@@ -2,7 +2,6 @@
   "name": "swimcalc",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://192.168.1.247:3002/api",
   "dependencies": {
     "@testing-library/jest-dom": "^5.13.0",
     "@testing-library/react": "^11.2.7",
@@ -11,12 +10,16 @@
     "node-sass": "^6.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-redux": "^7.2.6",
     "react-scripts": "4.0.3",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.1",
     "web-vitals": "^1.1.2"
   },
+  "proxy": "http://localhost:3002/api",
   "scripts": {
     "start": "BROWSER=none HTTPS=true PORT=30100 react-scripts start",
-    "dev": "BROWSER=none HTTPS=false PORT=3001 react-scripts start",
+    "dev": "BROWSER=none PORT=3001 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

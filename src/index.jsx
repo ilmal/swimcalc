@@ -1,10 +1,21 @@
 import ReactDOM from "react-dom";
 import React, { useState } from "react";
 import "./scss/main.scss";
+import { applyMiddleware, createStore } from "redux"
+import { Provider } from "react-redux"
+import { composeWithDevTools } from "redux-devtools-extension"
+import thunk from "redux-thunk"
+import reducer from "./redux/reducers"
 
 import useCalc from "./calculator/calc"
 import useKvaltider from "./kvaltider/kvaltider";
 import useLandingPage from "./landing/landing";
+
+export const store = createStore(
+    reducer,
+    composeWithDevTools(applyMiddleware(thunk)) //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
+
 
 const LandingPage = () => {
 
@@ -55,7 +66,12 @@ const LandingPage = () => {
     )
 }
 
+
+
+
 ReactDOM.render(
-    <LandingPage />
+    <Provider store={store}>
+        <LandingPage />
+    </Provider>
     , document.querySelector("#root")
 )
