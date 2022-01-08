@@ -23,6 +23,9 @@ app.use((req, res, next) => {
 const tempusopen = require("./tempusopen")
 app.use("/api/tempus", tempusopen)
 
+const competition = require("./competitions")
+app.use("/api/competitions", competition)
+
 
 
 http.createServer(app).listen(HTTP_PORT, () => console.log(`HTTP listening on port: ${HTTP_PORT}`));

@@ -28,7 +28,6 @@ const htmlHandler = (source, res) => {
                     data = element.textContent.split("\n")[0]
                 }
                 if (element.getElementsByTagName("a")[0]?.href !== undefined) { // extract id
-                    console.log("HREF: ", element.getElementsByTagName("a")[0].href)
                     object["id"] = element.getElementsByTagName("a")[0].href.split("id=")[1]
                 }
                 switch (index) {
@@ -131,7 +130,7 @@ const htmlHandler = (source, res) => {
     })
 
     let final = {
-        "25:": obj25,
+        "25": obj25,
         "50": obj50
     }
 
@@ -144,7 +143,7 @@ router.post("/find", async (req, res) => {
 
     console.log(req.body.name)
     let url = `https://www.tempusopen.se/index.php?r=swimmer%2Findex&Swimmer%5Bfirst_name%5D=${req.body.name.toLowerCase()}&Swimmer%5Blast_name%5D=${req.body.sur_name.toLowerCase()}&Swimmer%5Bswimmer_club%5D=&Swimmer%5BsearchChoice%5D=&Swimmer%5Bclass%5D=99&Swimmer%5Bis_active%5D=99&ajax=swimmer-grid&pageSize=100`
-    url = "https://www.tempusopen.se/index.php?r=swimmer%2Findex&Swimmer%5Bfirst_name%5D=nils&Swimmer%5Blast_name%5D=malmberg&Swimmer%5Bswimmer_club%5D=&Swimmer%5BsearchChoice%5D=&Swimmer%5Bclass%5D=99&Swimmer%5Bis_active%5D=99&ajax=swimmer-grid&pageSize=100"
+    //url = "https://www.tempusopen.se/index.php?r=swimmer%2Findex&Swimmer%5Bfirst_name%5D=nils&Swimmer%5Blast_name%5D=malmberg&Swimmer%5Bswimmer_club%5D=&Swimmer%5BsearchChoice%5D=&Swimmer%5Bclass%5D=99&Swimmer%5Bis_active%5D=99&ajax=swimmer-grid&pageSize=100"
 
     let config = {
         method: 'get',
@@ -163,7 +162,7 @@ router.post("/find", async (req, res) => {
 
 router.post("/selectUser", async (req, res) => {
     let url = `https://www.tempusopen.se/index.php?r=swimmer/view&id=${req.body.id}`
-    url = "https://www.tempusopen.se/index.php?r=swimmer/view&id=302750"
+    //url = "https://www.tempusopen.se/index.php?r=swimmer/view&id=302750"
 
     let config = {
         method: 'get',

@@ -7,9 +7,9 @@ WORKDIR /app
 # add `/app/node_modules/.bin` to $PATH
 ENV PATH /app/node_modules/.bin:$PATH
 
-# install app dependencies
+# install app dependencies  // script the file to support multiple application at once, for the backend and frontend to share a single container
 COPY package.json ./
-COPY package-lock.json ./
+COPY package-lock.json ./                                                 
 RUN npm cache clean --force
 RUN apk add --no-cache --virtual .gyp \
     python \

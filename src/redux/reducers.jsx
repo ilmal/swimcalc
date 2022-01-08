@@ -1,12 +1,19 @@
 const initailState = {
     user: {
         data: {},
-        searchField: {}
+        searchField: []
     },
+    competitions: {}
 }
 
 const Reducer = (state = initailState, action) => {
     switch (action.type) {
+        case "USER": {
+            return {
+                ...state,
+                user: action.payload
+            }
+        }
         case "USER_SEARCH_FIELDS":
             return {
                 ...state,
@@ -22,6 +29,28 @@ const Reducer = (state = initailState, action) => {
                     ...state.user,
                     data: action.payload
                 }
+            }
+        case "USER_INFO":
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    info: action.payload
+                }
+            }
+        case "COMPETITIONS":
+            return {
+                ...state,
+                competitions: action.payload
+            }
+        case "CLR_USER":
+            return {
+                ...state,
+                user: {}
+            }
+        default:
+            return {
+                ...state
             }
     }
 }

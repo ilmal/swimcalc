@@ -72,7 +72,7 @@ const useCalc = () => {
             returnArray.push(
                 <div key={`key${element}`} style={{
                     gridColumn: "1 / 2",
-                    gridRow: `${position} / ${position + 1}`
+                    gridRow: `${position + 1} / ${position + 2}`
                 }} className="colorDiv">
                     <span>{element}</span>
                 </div>
@@ -82,12 +82,12 @@ const useCalc = () => {
     }
 
     const calculator = (e) => {
-        if (e.target.value.toString().indexOf(".") > -1) {
-            console.log("not a number")
-            setBaseTimeMin(null)
-            setBaseTimeSec(null)
-            return
-        }
+        // if (e.target.value.toString().indexOf(".") > -1) {
+        //     console.log("not a number")
+        //     setBaseTimeMin(null)
+        //     setBaseTimeSec(null)
+        //     return
+        // }
         if (e.target.value.toString().charAt(0) === "0") {
             e.target.value = e.target.value.toString().replace("0", "")
         }
@@ -131,7 +131,8 @@ const useCalc = () => {
             const timeCalc = (duration) => {
                 if (duration >= 60) { // if the duration is more than one minute
                     let min = ~~(duration / 60)
-                    let sec = ~~(duration % 60)
+                    let sec = Number.parseFloat(duration % 60).toFixed(2)
+                    //let sec = ~~(duration % 60)
                     console.log("SEC: ", sec)
                     console.log("MIN: ", min)
                     return [sec, min]
@@ -145,19 +146,28 @@ const useCalc = () => {
             returnArray.push(
                 <div key={`key${i}`} style={{
                     gridColumn: "2 / 3",
-                    gridRow: `${i + 2} / ${i + 3}`
+                    gridRow: `${i + 3} / ${i + 4}`
                 }} className="colorDiv timeInputDiv">
                     <input value={baseTimeMin !== null ? minCalc : ""} onInput={calculator} id={i} name="min" type="number" placeholder="min" />
-                    <span>/</span>
+                    <span>:</span>
                     <input value={baseTimeSec !== null ? secCalc : ""} onInput={calculator} id={i} name="sec" type="number" placeholder="sec" />
                 </div>
             )
         }
         return returnArray
     }
+
+    const resetValues = () => {
+        setBaseTimeMin(null)
+        setBaseTimeSec(null)
+    }
+
     return (
         <div className="tabellMain">
             <div className="container">
+                <div className="resetButtonDiv">
+                    <button onClick={resetValues}>RESET</button>
+                </div>
                 <div className="colorDiv distanceTitle">
                     <span>DISTANCE</span>
                 </div>

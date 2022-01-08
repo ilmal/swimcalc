@@ -13,12 +13,28 @@
         background-color: lightblue;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(17, 1fr);
+        grid-template-rows: auto;
         grid-column-gap: 1px;
         grid-row-gap: 1px;
+        .resetButtonDiv{
+            grid-column: 1/3;
+            grid-row: 1/2;
+            min-height: 5rem;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            button{
+                border: 1px solid rgba(#0099ff, .7);
+                border-radius: 5px;
+                outline: none;
+                padding: 1rem 2rem;
+                background-color: rgba(#0099ff, .3);
+            }
+        }
         .colorDiv {
             width: 100%;
-            height: 100%;
+            height: 15vh;
             background-color: white;
             display: flex;
             align-items: center;
@@ -26,7 +42,7 @@
         }
         .timeInputDiv{
             input {
-                width: 100%;
+                width: 50%;
                 height: 100%;
                 border: none;
                 outline: none;
@@ -35,11 +51,11 @@
         }
         .distanceTitle{
             grid-column: 1/2;
-            grid-row: 1/2;
+            grid-row: 2/3;
         }
         .TimeTitle{
             grid-column: 2/3;
-            grid-row: 1/2;
+            grid-row: 2/3;
         }
     }
 }
