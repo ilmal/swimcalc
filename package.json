@@ -20,6 +20,7 @@
   "proxy": "http://localhost:3002/api",
   "scripts": {
     "start": "BROWSER=none HTTPS=true PORT=30100 react-scripts start",
+    "prod": "(cd backend && npm start) & npm run dev",
     "dev": "BROWSER=none PORT=3001 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
