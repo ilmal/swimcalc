@@ -1,13 +1,24 @@
 const initailState = {
+    loading: false,
     user: {
         data: {},
         searchField: []
     },
-    competitions: {}
+    competitions: {},
+    relay: {
+        data: [],
+        info: []
+    }
 }
 
 const Reducer = (state = initailState, action) => {
     switch (action.type) {
+        case "LOADING": {
+            return {
+                ...state,
+                loading: action.payload
+            }
+        }
         case "USER": {
             return {
                 ...state,
@@ -48,6 +59,39 @@ const Reducer = (state = initailState, action) => {
                 ...state,
                 user: {}
             }
+        case "RELAY": {
+            return {
+                ...state,
+                relay: action.payload
+            }
+        }
+        case "RELAY_USER_INFO":
+            return {
+                ...state,
+                relay:{
+                    ...state.relay,
+                    info:[
+                        ...state.relay.info,
+                        action.payload
+                    ]
+                }
+            }
+        case "RELAY_USER_DATA":
+            return {
+                ...state,
+                relay:{
+                    ...state.relay,
+                    data: [
+                        ...state.relay.data,
+                        action.payload
+                    ]
+                }
+            }    
+        case "RELAY_REMOVE_USER":
+            return {
+                ...state,
+                relay: action.payload
+            }       
         default:
             return {
                 ...state

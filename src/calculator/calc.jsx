@@ -4,13 +4,6 @@ const useCalc = () => {
     const [baseTimeMin, setBaseTimeMin] = useState(null)
     const [baseTimeSec, setBaseTimeSec] = useState(null)
 
-
-    React.useEffect(() => {
-        // console.log("baseMin: ", baseTimeMin)
-        // console.log("baseSec: ", baseTimeSec)
-    })
-
-
     const distance = () => {
         const distanceArray = ["50", "100", "200", "300", "400", "500", "600", "700", "800", "900", "1000", "1100", "1200", "1300", "1400", "1500"]
         const returnArray = []

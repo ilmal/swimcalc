@@ -5,20 +5,23 @@ import _ from "lodash"
 
 const useLandingPage = () => {
 
-    const [update, setUpdate] = useState(false)
-    store.subscribe(() => setUpdate(!update))
-
     const [isLoggedInPage, setIsLoggedInPage] = useState(false)
     const [cancelCheck, setCancelCheck] = useState(false)
 
     useEffect(() => {
-
         if (store.getState()?.user?.data !== undefined && !cancelCheck) {
-            if (Object.keys(store.getState().user.data).length > 0) setIsLoggedInPage(true)
+            if (Object.keys(store.getState().user.data).length > 0){
+                setIsLoggedInPage(true)
+            } 
         }
-    }, [update, cancelCheck])
+    }, [store.getState()])
 
     const getPage = async (name, sur_name) => {
+        console.log("getPage")
+        store.dispatch({
+            type: "LOADING",
+            payload: true
+        })
         await axios.post("/tempus/find", {
             name,
             sur_name
@@ -29,11 +32,21 @@ const useLandingPage = () => {
                     payload: res.data
                 })
             })
+        console.log("done")
+        store.dispatch({
+            type: "LOADING",
+            payload: false
+        })
     }
 
     const selectUser = async (index) => {
         setIsLoggedInPage(true)
         setCancelCheck(false)
+
+        store.dispatch({
+            type: "LOADING",
+            payload: true
+        })
 
         await store.dispatch({ //adding user gender
             type: "USER_INFO",
@@ -50,6 +63,10 @@ const useLandingPage = () => {
             id: store.getState().user.searchField[index].id
         })
             .then(res => {
+                store.dispatch({
+                    type: "LOADING",
+                    payload: false
+                })
                 console.log("CHANGING USER DATA")
                 console.log(res.data)
                 store.dispatch({
@@ -60,7 +77,6 @@ const useLandingPage = () => {
 
         // add to session storage
         localStorage.setItem("user", JSON.stringify(store.getState().user))
-
     }
 
     const inputHandler = (e) => {

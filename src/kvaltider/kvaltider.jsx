@@ -7,9 +7,6 @@ import _ from "lodash"
 
 const useKvaltider = () => {
 
-    const [update, setUpdate] = useState(false)
-    store.subscribe(() => setUpdate(!update))
-
     const [competitionList, setCompetitionList] = useState()
     const [list, setlist] = useState(null)
 
@@ -118,7 +115,7 @@ const useKvaltider = () => {
         } else {
             setlist(null)
         }
-    }, [competitionList, update, pool])
+    }, [])
 
 
     return (
