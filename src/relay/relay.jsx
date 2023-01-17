@@ -8,7 +8,10 @@ import moment from "moment"
 const User_login = ({setPage, store})=>{
 
     const getPage = async (name, sur_name) => {
-        store.getState().loading = true
+        store.dispatch({
+            type: "LOADING",
+            payload: true
+        })
         await axios.post("/tempus/find", {
             name,
             sur_name
@@ -19,6 +22,10 @@ const User_login = ({setPage, store})=>{
                     payload: res.data
                 })
             })
+        store.dispatch({
+            type: "LOADING",
+            payload: false
+        })
     }
 
     const selectUser = async (index) => {
