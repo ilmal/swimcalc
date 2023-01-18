@@ -12,8 +12,8 @@ router.use("/", async (req, res) => {
         files.forEach((fileName) => {
             const rawData = fs.readFileSync(folder + fileName)
             returnObject[fileName.split(".")[0]] = JSON.parse(rawData)
-            res.send(returnObject)
         })
+        res.send(returnObject)
     })
 })
 

@@ -50,7 +50,7 @@ const LandingPage = () => {
         unsubscribe()
     }, [update])
 
-    const [pageSelector, setPageSelector] = useState("landing")
+    const [pageSelector, setPageSelector] = useState("kval")
     const [is_page_loading, set_is_page_loading] = useState(false)
     const landingPage = useLandingPage()
     const calcComponent = useCalc()
@@ -165,9 +165,13 @@ const LandingPage = () => {
                         <div onClick={() => setPageSelector("kval")}>
                             <span>KVALTIDER</span>
                         </div>
+                        {/* 
+                        
+                        RELAY FUNCTION IS UNSTAGED 
+
                         <div onClick={()=> setPageSelector("relay")}>
                             <span>RELAY</span>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className="titleContainer">
