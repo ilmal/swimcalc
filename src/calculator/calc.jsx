@@ -151,9 +151,9 @@ const useCalc = () => {
                     {/* <input value={baseTimeMin !== null ? minCalc : ""} onInput={calculator} id={i} name="min" type="number" placeholder="min" />
                     <span>:</span>
                     <input value={baseTimeSec !== null ? secCalc : ""} onInput={calculator} id={i} name="sec" type="number" placeholder="sec" /> */}
-                    <input placeholder={baseTimeMin !== null ? minCalc : ""} onInput={calculator} onClick={(e)=>e.target.value = ""} id={i} name="min" type="number" />
+                    <input placeholder={baseTimeMin !== null ? minCalc : "min"} className={baseTimeSec !== null ? "placeholder_style" : ""} onInput={calculator} onClick={(e)=>e.target.value ="min"} id={i} name="min" type="number" />
                     <span>:</span>
-                    <input placeholder={baseTimeSec !== null ? secCalc : ""} onInput={calculator} onClick={(e)=>e.target.value = ""} id={i} name="sec" type="number" />
+                    <input placeholder={baseTimeSec !== null ? secCalc : "sec"} className={baseTimeSec !== null ? "placeholder_style" : ""} onInput={calculator} onClick={(e)=>e.target.value = ""} id={i} name="sec" type="number" />
                 </div>
             )
         }

@@ -8,9 +8,10 @@ import _ from "lodash"
 const useKvaltider = () => {
 
     const [competitionList, setCompetitionList] = useState()
-    const [selectedCompetition, setSelectedCompetition] = useState("")
+    const [selectedCompetition, setSelectedCompetition] = useState()
     const [list, setlist] = useState(null)
 
+    const [supportMultiplePool, setSupportMultiplePool] = useState(true)
     const [pool, setPool] = useState("25")
 
     useEffect(async () => {
@@ -32,6 +33,10 @@ const useKvaltider = () => {
         });
         setCompetitionList(returnList)
         setSelectedCompetition(Object.keys(store.getState().competitions)[0])
+
+        // check for multiple pool support
+        if (Object.keys(store.getState().competitions[selectedCompetition][store.getState().user.info.gender.toLowerCase()]).length < 2) setSupportMultiplePool(false)
+
     }, [])
 
     const checkAge = (age) => { // types: intager, span, lower, upper, open
@@ -182,7 +187,7 @@ const useKvaltider = () => {
         } else {
             setlist(null)
         }
-    }, [selectedCompetition])
+    }, [selectedCompetition, pool])
 
 
     return (
@@ -193,13 +198,19 @@ const useKvaltider = () => {
                     {competitionList}
                 </select>
             </div>
-            <div className="selectPool">
-                <span>POOL</span>
-                <select onChange={(e) => setPool(e.target.value)} name="pool" id="pool">
-                    <option value="25">25</option>
-                    <option value="50">50</option>
-                </select>
-            </div>
+            {
+                supportMultiplePool? 
+                <div className="selectPool">
+                    <span>POOL</span>
+                    <select onChange={(e) => setPool(e.target.value)} name="pool" id="pool">
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                    </select>
+                </div>
+                :
+                null
+            }
+
             <div className="kvalList">
                 {list}
             </div>

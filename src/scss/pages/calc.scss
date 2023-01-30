@@ -48,6 +48,9 @@
                 outline: none;
                 text-align: center;
             }
+            .placeholder_style::placeholder{
+                color: coral;
+            }
         }
         .distanceTitle{
             grid-column: 1/2;
