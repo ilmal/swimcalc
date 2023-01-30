@@ -141,8 +141,8 @@ const htmlHandler = (source, res) => {
 router.post("/find", async (req, res) => {
 
 
-    console.log(req.body.name)
-    let url = `https://www.tempusopen.se/index.php?r=swimmer%2Findex&Swimmer%5Bfirst_name%5D=${req.body.name.toLowerCase()}&Swimmer%5Blast_name%5D=${req.body.sur_name.toLowerCase()}&Swimmer%5Bswimmer_club%5D=&Swimmer%5BsearchChoice%5D=&Swimmer%5Bclass%5D=99&Swimmer%5Bis_active%5D=99&ajax=swimmer-grid&pageSize=100`
+    console.log(req.body.name, req.body.sur_name, req.body.organization)
+    let url = `https://www.tempusopen.se/index.php?r=swimmer%2Findex&Swimmer%5Bfirst_name%5D=${req.body.name.toLowerCase()}&Swimmer%5Blast_name%5D=${req.body.sur_name.toLowerCase()}&Swimmer%5Bswimmer_club%5D=${req.body.organization.toLowerCase()}&Swimmer%5BsearchChoice%5D=&Swimmer%5Bclass%5D=99&Swimmer%5Bis_active%5D=99&ajax=swimmer-grid&pageSize=100`
     //url = "https://www.tempusopen.se/index.php?r=swimmer%2Findex&Swimmer%5Bfirst_name%5D=nils&Swimmer%5Blast_name%5D=malmberg&Swimmer%5Bswimmer_club%5D=&Swimmer%5BsearchChoice%5D=&Swimmer%5Bclass%5D=99&Swimmer%5Bis_active%5D=99&ajax=swimmer-grid&pageSize=100"
 
     let config = {

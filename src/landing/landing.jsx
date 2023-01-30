@@ -16,7 +16,7 @@ const useLandingPage = () => {
         }
     }, [store.getState()])
 
-    const getPage = async (name, sur_name) => {
+    const getPage = async (name, sur_name, organization) => {
         console.log("getPage")
         store.dispatch({
             type: "LOADING",
@@ -24,7 +24,8 @@ const useLandingPage = () => {
         })
         await axios.post("/tempus/find", {
             name,
-            sur_name
+            sur_name, 
+            organization
         })
             .then(res => {
                 store.dispatch({
@@ -81,11 +82,32 @@ const useLandingPage = () => {
 
     const inputHandler = (e) => {
         e.preventDefault()
-        if (e.target.name.value === "") {
-            getPage("nils", "malmberg")
-            return
+
+        let name = e.target.name.value
+        let sueName = e.target.surName.value
+        let organization = e.target.organization.value
+
+        // if (name === "" && sueName === "") {
+        //     getPage("nils", "malmberg")
+        //     return
+        // }
+
+        const handle_swe = (name)=>{
+            name.toLowerCase()
+            name = name.replaceAll("å", "%C3%A5")
+            name = name.replaceAll("ä", "%C3%A4")
+            name = name.replaceAll("ö", "%C3%B6")
+            name = name.replaceAll(" ", "+")
+            return name
         }
-        getPage(e.target.name.value, e.target.surName.value)
+
+        name = handle_swe(name)
+        sueName = handle_swe(sueName)
+        organization = handle_swe(organization)
+
+        console.log(name, sueName, organization)
+
+        getPage(name, sueName, organization)
     }
 
     const displayList = () => {

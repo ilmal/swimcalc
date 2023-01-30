@@ -31,6 +31,7 @@ const useKvaltider = () => {
             returnList.push(option)
         });
         setCompetitionList(returnList)
+        setSelectedCompetition(Object.keys(store.getState().competitions)[0])
     }, [])
 
     const checkAge = (age) => { // types: intager, span, lower, upper, open
@@ -83,7 +84,10 @@ const useKvaltider = () => {
         if (userAge <= age_upper && userAge >= age_lower) {
             return age
         }
-        return false
+        if (userAge < age_upper && userAge < age_lower){
+            return [false, "young"]
+        }
+        return [false, "old"]
     }
 
     const checkQ = (qtime, ytime) => {
@@ -96,18 +100,24 @@ const useKvaltider = () => {
         if (store.getState()?.competitions[selectedCompetition] !== undefined && store.getState()?.user?.data !== undefined && store.getState()?.user?.info?.gender !== undefined) {
             let returnArr = []
             let ageGroupFound = false
+            let ageExtremes = false
             let duplicateCheck = []
             let value = store.getState().competitions[selectedCompetition][store.getState().user.info.gender.toLowerCase()][pool]
-            if (Object.keys(store.getState().competitions[selectedCompetition][store.getState().user.info.gender.toLowerCase()]).length > 2) value = store.getState().competitions[selectedCompetition][store.getState().user.info.gender.toLowerCase()][Object.keys(store.getState().competitions[selectedCompetition][store.getState().user.info.gender.toLowerCase()])[0]]
+            if (Object.keys(store.getState().competitions[selectedCompetition][store.getState().user.info.gender.toLowerCase()]).length < 2) {
+                console.log("NEW VALUE")
+                value = store.getState().competitions[selectedCompetition][store.getState().user.info.gender.toLowerCase()][Object.keys(store.getState().competitions[selectedCompetition][store.getState().user.info.gender.toLowerCase()])[0]]
+            }
             console.log("VALUE: ", value, Object.keys(store.getState().competitions[selectedCompetition][store.getState().user.info.gender.toLowerCase()])[0], store.getState().competitions[selectedCompetition][store.getState().user.info.gender.toLowerCase()][Object.keys(store.getState().competitions[selectedCompetition][store.getState().user.info.gender.toLowerCase()])[0]])
             Object.keys(value).forEach(age => { // to age
                 age = checkAge(age)
-                if (!age) {
+                if (!age[0]) {
+                    ageExtremes = age[1]
                     return
                 }
-                Object.keys(store.getState().competitions[selectedCompetition][store.getState().user.info.gender.toLowerCase()][pool][age]).forEach(style => { // to style
+                console.log("AGE: ", age, "VALUE: ", value[age])
+                Object.keys(value[age]).forEach(style => { // to style
                     ageGroupFound = true
-                    Object.keys(store.getState().competitions[selectedCompetition][store.getState().user.info.gender.toLowerCase()][pool][age][style]).forEach(distance => { // to distance
+                    Object.keys(value[age][style]).forEach(distance => { // to distance
                         //console.log("Time: ", store.getState().competitions[selectedCompetition][store.getState().user.info.gender.toLowerCase()][pool][age][style][distance], "Style: ", style, "Distance: ", distance)
                         //console.log("USERDATA: ", store.getState().user.data?.[pool]?.[style]?.[distance]?.time)
 
@@ -121,7 +131,7 @@ const useKvaltider = () => {
                         if (store.getState().user.data?.[pool]?.[style]?.[distance]?.time !== undefined) { // making sure the swimmer has a valid time 
                             let addClass = "not_qualified"
                             let Qmessage = "NOT QUALIFIED"
-                            if (checkQ(store.getState().competitions[selectedCompetition][store.getState().user.info.gender.toLowerCase()][pool][age][style][distance], store.getState().user.data[pool][style][distance].time)) {
+                            if (checkQ(value[age][style][distance], store.getState().user.data[pool][style][distance].time)) {
                                 addClass = "qualified"
                                 Qmessage = "QUALIFIED"
                             }
@@ -137,7 +147,7 @@ const useKvaltider = () => {
                                     </div>
                                     <div key={_.uniqueId()} className="QtimeDiv">
                                         <span key={_.uniqueId()}>Q-Time</span>
-                                        <span key={_.uniqueId()}>{store.getState().competitions[selectedCompetition][store.getState().user.info.gender.toLowerCase()][pool][age][style][distance]}</span>
+                                        <span key={_.uniqueId()}>{value[age][style][distance]}</span>
                                     </div>
                                     <div key={_.uniqueId()} className="YtimeDiv">
                                         <span key={_.uniqueId()}>Your-Time</span>
@@ -152,11 +162,19 @@ const useKvaltider = () => {
             })
             if (!ageGroupFound) {
                 console.log("NO AGE FOUND")
-                return setlist(
-                    <div className="toOldDiv">
-                        <span>TO OLD</span>
-                    </div>
-                )
+                if (ageExtremes === "old"){
+                    return setlist(
+                        <div className="toOldDiv">
+                            <span>TO OLD</span>
+                        </div>
+                    )
+                }else if (ageExtremes === "young"){
+                    return setlist(
+                        <div className="toOldDiv">
+                            <span>TO YOUNG</span>
+                        </div>
+                    ) 
+                }
             }
             setlist(returnArr)
         } else {
@@ -170,7 +188,6 @@ const useKvaltider = () => {
             <div className="selectCompetition">
                 <span>COMPETITION</span>
                 <select name="competition" id="competition" selected={selectedCompetition} onChange={(e)=> setSelectedCompetition(e.target.value)}>
-                    <option value=""/>
                     {competitionList}
                 </select>
             </div>
