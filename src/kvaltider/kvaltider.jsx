@@ -34,10 +34,15 @@ const useKvaltider = () => {
         setCompetitionList(returnList)
         setSelectedCompetition(Object.keys(store.getState().competitions)[0])
 
-        // check for multiple pool support
-        if (Object.keys(store.getState().competitions[selectedCompetition][store.getState().user.info.gender.toLowerCase()]).length < 2) setSupportMultiplePool(false)
-
     }, [])
+
+    useEffect(()=>{
+        // check for multiple pool support
+        if (selectedCompetition){
+            if (Object.keys(store.getState().competitions[selectedCompetition][store.getState().user.info.gender.toLowerCase()]).length < 2) setSupportMultiplePool(false)
+            else setSupportMultiplePool(true)
+        }
+    }, [selectedCompetition])
 
     const checkAge = (age) => { // types: intager, span, lower, upper, open
 
@@ -208,7 +213,7 @@ const useKvaltider = () => {
                     </select>
                 </div>
                 :
-                null
+                <div className="selectPool"/>
             }
 
             <div className="kvalList">
