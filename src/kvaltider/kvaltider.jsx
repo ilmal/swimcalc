@@ -8,7 +8,7 @@ import _ from "lodash"
 const useKvaltider = () => {
 
     const [competitionList, setCompetitionList] = useState()
-    const [selectedCompetition, setSelectedCompetition] = useState("sumsim")
+    const [selectedCompetition, setSelectedCompetition] = useState("")
     const [list, setlist] = useState(null)
 
     const [pool, setPool] = useState("25")
@@ -33,34 +33,55 @@ const useKvaltider = () => {
         setCompetitionList(returnList)
     }, [])
 
-    const checkAge = (age) => { // types: intager, span, lower, false
+    const checkAge = (age) => { // types: intager, span, lower, upper, open
 
         const get_type = (input_age)=>{
-            let type = false
-        
-            //check type
-            if (age > 200){
-    
-            }
+
+            if (input_age.includes("_lower")) return "upper"
+
+            if (input_age.includes("_upper")) return "lower"
+
+            if (input_age.includes("open")) return "open"
+
+            if (input_age > 200) return "span"
+
+            return "intager"
+
         }
 
         const type = get_type(age)
 
+        console.log(type)
+
+        let age_lower
+        let age_upper
+
+        console.log("TYPE: ", type)
 
         if (type == "span"){
-
-            const age_lower = parseInt(age.toString().slice(0,2))
-            const age_upper = parseInt(age.toString().slice(2,4))
-
-            console.log(age_lower, age_upper)
-
+            age_lower = parseInt(age.toString().slice(0,2))
+            age_upper = parseInt(age.toString().slice(2,4))
+        }else if (type == "intager"){
+            age_lower = age
+            age_upper = age
+        }else if (type == "lower") {
+            age_lower = parseInt(age.slice(0,2))
+            age_upper = 1000
+        }else if (type == "upper") {
+            age_lower = 0
+            age_upper = parseInt(age.slice(0,2))
+        }else if (type == "open"){
+            age_lower = 0
+            age_upper = 1000
         }
 
         const date = new Date()
         const userAge = parseInt(date.getFullYear()) - parseInt(store.getState().user.info.age)
 
-        if (userAge <= age) {
-            return true
+        console.log("USER_AGE: ", userAge, "LOWER: ", age_lower, "UPPER: ", age_upper)
+
+        if (userAge <= age_upper && userAge >= age_lower) {
+            return age
         }
         return false
     }
@@ -76,8 +97,12 @@ const useKvaltider = () => {
             let returnArr = []
             let ageGroupFound = false
             let duplicateCheck = []
-            Object.keys(store.getState().competitions[selectedCompetition][store.getState().user.info.gender.toLowerCase()][pool]).forEach(age => { // to age
-                if (!checkAge(age)) {
+            let value = store.getState().competitions[selectedCompetition][store.getState().user.info.gender.toLowerCase()][pool]
+            if (Object.keys(store.getState().competitions[selectedCompetition][store.getState().user.info.gender.toLowerCase()]).length > 2) value = store.getState().competitions[selectedCompetition][store.getState().user.info.gender.toLowerCase()][Object.keys(store.getState().competitions[selectedCompetition][store.getState().user.info.gender.toLowerCase()])[0]]
+            console.log("VALUE: ", value, Object.keys(store.getState().competitions[selectedCompetition][store.getState().user.info.gender.toLowerCase()])[0], store.getState().competitions[selectedCompetition][store.getState().user.info.gender.toLowerCase()][Object.keys(store.getState().competitions[selectedCompetition][store.getState().user.info.gender.toLowerCase()])[0]])
+            Object.keys(value).forEach(age => { // to age
+                age = checkAge(age)
+                if (!age) {
                     return
                 }
                 Object.keys(store.getState().competitions[selectedCompetition][store.getState().user.info.gender.toLowerCase()][pool][age]).forEach(style => { // to style
@@ -137,14 +162,15 @@ const useKvaltider = () => {
         } else {
             setlist(null)
         }
-    }, [])
+    }, [selectedCompetition])
 
 
     return (
         <div className="kvaltiderMainDiv">
             <div className="selectCompetition">
                 <span>COMPETITION</span>
-                <select name="competition" id="competition" onChange={(e)=> setSelectedCompetition(e.target.value)}>
+                <select name="competition" id="competition" selected={selectedCompetition} onChange={(e)=> setSelectedCompetition(e.target.value)}>
+                    <option value=""/>
                     {competitionList}
                 </select>
             </div>
