@@ -50,7 +50,7 @@ const LandingPage = () => {
         unsubscribe()
     }, [update])
 
-    const [pageSelector, setPageSelector] = useState("landing")
+    const [pageSelector, setPageSelector] = useState("calc")
     const [is_page_loading, set_is_page_loading] = useState(false)
     const landingPage = useLandingPage()
     const calcComponent = useCalc()

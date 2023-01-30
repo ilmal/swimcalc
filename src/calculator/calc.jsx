@@ -1,3 +1,4 @@
+import { forEach } from "lodash";
 import React, { useState } from "react";
 
 const useCalc = () => {
@@ -75,6 +76,13 @@ const useCalc = () => {
     }
 
     const calculator = (e) => {
+        Array.from(document.getElementsByClassName("timeInputDiv")).forEach(element => {
+            Array.from(element.getElementsByTagName("input")).forEach(input => {
+                if (input.id === e.target.id) return 
+                input.value = ""
+            });
+        });
+        e.preventDefault()
         // if (e.target.value.toString().indexOf(".") > -1) {
         //     console.log("not a number")
         //     setBaseTimeMin(null)
@@ -135,15 +143,17 @@ const useCalc = () => {
             let duration = (min * 60) + sec
             let [secCalc, minCalc] = timeCalc(duration)
 
-            // console.log("CALC: ", secCalc, " ", minCalc)
             returnArray.push(
                 <div key={`key${i}`} style={{
                     gridColumn: "2 / 3",
                     gridRow: `${i + 3} / ${i + 4}`
                 }} className="colorDiv timeInputDiv">
-                    <input value={baseTimeMin !== null ? minCalc : ""} onInput={calculator} id={i} name="min" type="number" placeholder="min" />
+                    {/* <input value={baseTimeMin !== null ? minCalc : ""} onInput={calculator} id={i} name="min" type="number" placeholder="min" />
                     <span>:</span>
-                    <input value={baseTimeSec !== null ? secCalc : ""} onInput={calculator} id={i} name="sec" type="number" placeholder="sec" />
+                    <input value={baseTimeSec !== null ? secCalc : ""} onInput={calculator} id={i} name="sec" type="number" placeholder="sec" /> */}
+                    <input placeholder={baseTimeMin !== null ? minCalc : ""} onInput={calculator} onClick={(e)=>e.target.value = ""} id={i} name="min" type="number" />
+                    <span>:</span>
+                    <input placeholder={baseTimeSec !== null ? secCalc : ""} onInput={calculator} onClick={(e)=>e.target.value = ""} id={i} name="sec" type="number" />
                 </div>
             )
         }

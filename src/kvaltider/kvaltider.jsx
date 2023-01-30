@@ -50,6 +50,8 @@ const useKvaltider = () => {
 
         }
 
+        console.log("AGE: ", age)
+
         const type = get_type(age)
 
         console.log(type)
